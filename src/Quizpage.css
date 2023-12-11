@@ -1,0 +1,7 @@
+.quiz-container {
+  width: 0;
+  height: 0;
+  border-left: 375px solid transparent;
+  border-right: 375px solid transparent;
+  border-bottom: 750px solid black;
+}
