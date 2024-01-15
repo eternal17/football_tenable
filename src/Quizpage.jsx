@@ -1,9 +1,9 @@
 import './Quizpage.css';
-interface QuizProps {
-  quizArr: Array<{ question: string; answers: Array<string> }>;
-}
+// export interface QuizProps {
+//   quizArr: Array<{ question: string; answers: Array<string> }>;
+// }
 
-const QuizPage = ({ quizArr }: QuizProps) => {
+const QuizPage = ({ quizArr }) => {
   return (
     <>
       <div className="title">
