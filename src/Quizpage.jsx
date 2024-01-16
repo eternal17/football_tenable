@@ -1,9 +1,32 @@
 import './Quizpage.css';
-// export interface QuizProps {
-//   quizArr: Array<{ question: string; answers: Array<string> }>;
-// }
+import { useState } from 'react';
 
 const QuizPage = ({ quizArr }) => {
+  const [input, setInput] = useState('');
+
+  const handleSubmit = (e) => {
+    console.log('send the text to be handled on the backend', input);
+
+    // fetch post request to the backend for checking answer
+    const answerObj = {
+      answer: input,
+    };
+    fetch('/handleAnswer', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(answerObj),
+    });
+
+    setInput('');
+  };
+
+  const handleEnterPressed = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  };
   return (
     <>
       <div className="title">
@@ -33,8 +56,14 @@ const QuizPage = ({ quizArr }) => {
         <div className="box">
           <div className="answer-lives text">
             <div className="lives">❤❤❤</div>
-            <input type="text" />
-            <button>Tenable?</button>
+            <input
+              style={{ color: 'black' }}
+              type="text"
+              onKeyDown={handleEnterPressed}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <button onClick={handleSubmit}>Tenable?</button>
           </div>
         </div>
       </div>
